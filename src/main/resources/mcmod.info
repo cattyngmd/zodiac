@@ -1,0 +1,16 @@
+[
+    {
+        "modid": "DoomSquad",
+        "name": "DoomSquad",
+        "description": "Utility mod",
+        "version": "${version}",
+        "mcversion": "${mcversion}",
+        "url": "https://www.yoink.site",
+        "updateUrl": "",
+        "authorList": ["yoink"],
+        "credits": "",
+        "logoFile": "",
+        "screenshots": [],
+        "dependencies": []
+    }
+]

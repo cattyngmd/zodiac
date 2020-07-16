@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_8",
+  "package": "cat.yoink.zodiac.mixin.mixins",
+  "refmap": "mixins.yoink.refmap.json",
+  "mixins": [
+    "MixinEntityRenderer",
+    "MixinNetworkManager"
+  ]
+}
