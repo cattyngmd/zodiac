@@ -23,7 +23,7 @@ public class ModuleManager {
         modules.add(new Arraylist());
         modules.add(new NoHurtCam());
         modules.add(new Criticals());
-        // modules.add(new ClickGUI());
+        modules.add(new ClickGUI());
         // modules.add(new Selfweb());
         // modules.add(new HoleTP());
     }
