@@ -1,12 +1,13 @@
 package me.cat.yoink.zodiac.module.modules.misc;
 
-import me.cat.yoink.zodiac.module.manager.module.Module;
+import cat.yoink.zodiac.module.manager.module.Category;
+import cat.yoink.zodiac.module.manager.module.Module;
 
 import java.net.URI;
 
-public class ChatSuffix extends Module {
+public class AutoPorn extends Module {
 
-    public ChatSuffix() {
+    public AutoPorn() {
 
         super("AutoPorn", "Opens pornhub if you want to jerk off.", Category.MISC, true);
 

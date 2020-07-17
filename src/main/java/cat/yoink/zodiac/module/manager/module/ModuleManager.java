@@ -5,6 +5,7 @@ import cat.yoink.zodiac.module.manager.setting.SettingManager;
 import cat.yoink.zodiac.module.modules.combat.*;
 import cat.yoink.zodiac.module.modules.render.*;
 import cat.yoink.zodiac.module.modules.misc.*;
+import me.cat.yoink.zodiac.module.modules.misc.AutoPorn;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class ModuleManager {
         modules.add(new NoHurtCam());
         modules.add(new Criticals());
         modules.add(new ClickGUI());
+        modules.add(new AutoPorn());
         // modules.add(new Selfweb());
         // modules.add(new HoleTP());
     }
