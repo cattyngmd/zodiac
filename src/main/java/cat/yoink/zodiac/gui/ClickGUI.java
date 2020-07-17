@@ -6,7 +6,6 @@ import java.io.IOException;
 
 public class ClickGUI extends GuiScreen {
 
-
     int X = 100;
     int Y = 100;
     int W = 200;
@@ -43,7 +42,6 @@ public class ClickGUI extends GuiScreen {
     protected void mouseReleased(int mouseX, int mouseY, int state) {
         d = false;
     }
-
 
     public boolean isHover(int X, int Y, int W, int H, int mX, int mY) {
         return mX >= X && mX <= X + W && mY >= Y && mY <= Y + H;
