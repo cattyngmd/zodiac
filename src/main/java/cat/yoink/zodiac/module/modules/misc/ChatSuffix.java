@@ -1,11 +1,8 @@
 package cat.yoink.zodiac.module.modules.misc;
 
-import cat.yoink.zodiac.Client;
 import cat.yoink.zodiac.module.manager.module.Category;
 import cat.yoink.zodiac.module.manager.module.Module;
 import cat.yoink.zodiac.module.manager.setting.Setting;
-import me.zero.alpine.listener.EventHandler;
-import me.zero.alpine.listener.Listener;
 import net.minecraftforge.client.event.ClientChatEvent;
 
 import java.util.ArrayList;
