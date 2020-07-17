@@ -1,6 +1,6 @@
 package me.cat.yoink.zodiac.module.modules.misc;
 
-import me.cat.yoink.zodiac.module.Module;
+import me.cat.yoink.zodiac.module.manager.Module;
 
 import java.net.URI;
 
