@@ -25,7 +25,7 @@ public class RPC {
                 try {
                     rpc.Discord_RunCallbacks();
                     details = "Version " + Client.VERSION;
-                    state = "Doomsquad";
+                    state = "Doomsquad On Top!";
                     if (!details.equals(presence.details) || !state.equals(presence.state)) {
                         presence.startTimestamp = System.currentTimeMillis() / 1000L;
                     }
