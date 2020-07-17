@@ -1,13 +1,15 @@
-package me.svintus.koolhack.module.modules.combat;
+package me.cat.yoink.zodiac.module.modules.misc;
 
-import me.svintus.koolhack.module.Module;
+import me.cat.yoink.zodiac.module.Module;
 
 import java.net.URI;
 
+public class ChatSuffix extends Module {
 
-public class PornHub extends Module {
-    public PornHub() {
-        super("Pornhub", Category.MISC, "check NOFACEGIRL");
+    public ChatSuffix() {
+
+        super("AutoPorn", "Opens pornhub if you want to jerk off.", Category.MISC, true);
+
     }
     public void onEnable() {
         try {
