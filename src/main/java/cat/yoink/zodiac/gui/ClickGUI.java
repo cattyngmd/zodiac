@@ -2,8 +2,6 @@ package cat.yoink.zodiac.gui;
 
 import net.minecraft.client.gui.GuiScreen;
 
-import java.io.IOException;
-
 public class ClickGUI extends GuiScreen {
 
     int X = 100;
@@ -28,7 +26,7 @@ public class ClickGUI extends GuiScreen {
     }
 
     @Override
-    protected void mouseClicked(int mX, int mY, int mouseButton) throws IOException {
+    protected void mouseClicked(int mX, int mY, int mouseButton) {
 
         if (isHover(X, Y, W, 20, mX, mY)) {
             d = true;
