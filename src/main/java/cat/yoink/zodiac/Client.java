@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
 /*
- * Written by yoink // Katatje
+ * Written by yoink and svintus
  */
 
 @Mod(modid = Client.MOD_ID, name = Client.MOD_NAME, version = Client.VERSION)
@@ -21,7 +21,7 @@ public class Client {
 
     public static final String MOD_ID = "zodiac";
     public static final String MOD_NAME = "Zodiac";
-    public static final String VERSION = "1";
+    public static final String VERSION = "V2";
 
     public static final EventBus EVENT_BUS = new EventManager();
 
