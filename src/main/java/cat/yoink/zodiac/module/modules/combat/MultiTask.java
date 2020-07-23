@@ -1,8 +1,8 @@
 
 
-package me.memeszz.aurora.module.modules.combat;
+package me.cat.yoink.zodiac.module.modules.combat;
 
-import me.memeszz.aurora.module.Module;
+import me.cat.yoink.zodiac.module.Module;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.util.EnumHand;
 import net.minecraft.entity.player.EntityPlayer;
