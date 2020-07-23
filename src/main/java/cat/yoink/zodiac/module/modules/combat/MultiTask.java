@@ -2,7 +2,7 @@
 
 package me.cat.yoink.zodiac.module.modules.combat;
 
-import me.cat.yoink.zodiac.module.Module;
+import me.cat.yoink.zodiac.module.manager.Module;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.util.EnumHand;
 import net.minecraft.entity.player.EntityPlayer;
