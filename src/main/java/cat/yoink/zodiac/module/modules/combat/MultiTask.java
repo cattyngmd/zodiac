@@ -13,11 +13,11 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 /**
  * by svintus
  */
-public class MultiTask extends Module {
-    public MultiTask() {
-        super("MultiTask", Category.COMBAT);
+public class Multitask extends Module {
+    public Multitask() {
+        super ("Multitask", "completes multiple tasks at once", Category.COMBAT, true);
     }
-
+            
     @SubscribeEvent
     public void onMouseInput(final InputEvent.MouseInputEvent event) {
         if (Mouse.getEventButtonState() && mc.player != null && mc.objectMouseOver.typeOfHit.equals((Object)RayTraceResult.Type.ENTITY) && mc.player.isHandActive() && (mc.gameSettings.keyBindAttack.isPressed() || Mouse.getEventButton() == mc.gameSettings.keyBindAttack.getKeyCode())) {
