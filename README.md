@@ -1,2 +1,3 @@
 # zodiac
-yoinkhack 10000
+custom base pvp client with a bit of yoinkhack code
+made by svintus and katatje
