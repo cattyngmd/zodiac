@@ -27,6 +27,7 @@ public class ModuleManager {
         modules.add(new ClickGUI());
         modules.add(new AutoPorn());
         modules.add(new Multitask());
+        modules.add(new Sprint());
         // modules.add(new Selfweb());
         // modules.add(new HoleTP());
     }
