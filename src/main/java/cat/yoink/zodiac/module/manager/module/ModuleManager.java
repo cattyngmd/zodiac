@@ -14,14 +14,15 @@ public class ModuleManager {
     public static void initialize() {
         modules.add(new StrengthDetect());
         modules.add(new TotemOffhand());
+        modules.add(new SmartOffhand());
         modules.add(new ChatSuffix());
+        modules.add(new MultiTask());
         modules.add(new Watermark());
         modules.add(new Arraylist());
         modules.add(new NoHurtCam());
         modules.add(new Criticals());
         modules.add(new ClickGUI());
         modules.add(new AutoPorn());
-        modules.add(new MultiTask());
         modules.add(new Sprint());
     }
 
