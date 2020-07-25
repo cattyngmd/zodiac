@@ -1,6 +1,6 @@
-package me.memeszz.aurora.module.modules.movement;
+package me.cat.yoink.zodiac.module.modules.misc;
 
-import me.memeszz.aurora.module.Module;
+import me.z.aurora.module.Module;
 
 public class Sprint extends Module {
     public Sprint() {
