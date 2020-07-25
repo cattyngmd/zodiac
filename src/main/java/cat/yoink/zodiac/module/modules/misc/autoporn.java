@@ -1,8 +1,9 @@
-package me.cat.yoink.zodiac.module.modules.misc;
+package cat.yoink.zodiac.module.modules.misc;
 
 import cat.yoink.zodiac.module.manager.module.Category;
 import cat.yoink.zodiac.module.manager.module.Module;
 
+import java.awt.*;
 import java.net.URI;
 
 public class AutoPorn extends Module {
@@ -12,6 +13,9 @@ public class AutoPorn extends Module {
         super("AutoPorn", "Opens pornhub if you want to jerk off.", Category.MISC, true);
 
     }
+
+
+
     public void onEnable() {
         try {
             Desktop.getDesktop().browse(URI.create("https://www.google.com/search?client=firefox-b-d&q=hitler+did+nothing+wrong"));

@@ -5,7 +5,6 @@ import cat.yoink.zodiac.module.manager.setting.SettingManager;
 import cat.yoink.zodiac.module.modules.combat.*;
 import cat.yoink.zodiac.module.modules.render.*;
 import cat.yoink.zodiac.module.modules.misc.*;
-import me.cat.yoink.zodiac.module.modules.misc.AutoPorn;
 
 import java.util.ArrayList;
 
@@ -13,23 +12,17 @@ public class ModuleManager {
     public static ArrayList<Module> modules = new ArrayList<>();
 
     public static void initialize() {
-        // modules.add(new CrystalOffhand());
         modules.add(new StrengthDetect());
-        // modules.add(new GappleOffhand());
         modules.add(new TotemOffhand());
-        // modules.add(new AutoCrystal());
         modules.add(new ChatSuffix());
-        // modules.add(new ThrowPearl());
         modules.add(new Watermark());
         modules.add(new Arraylist());
         modules.add(new NoHurtCam());
         modules.add(new Criticals());
         modules.add(new ClickGUI());
         modules.add(new AutoPorn());
-        modules.add(new Multitask());
+        modules.add(new MultiTask());
         modules.add(new Sprint());
-        // modules.add(new Selfweb());
-        // modules.add(new HoleTP());
     }
 
 

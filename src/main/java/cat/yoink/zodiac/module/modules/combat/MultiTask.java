@@ -1,28 +1,45 @@
+package cat.yoink.zodiac.module.modules.combat;
 
-
-package me.cat.yoink.zodiac.module.modules.combat;
-
-import me.cat.yoink.zodiac.module.manager.Module;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import cat.yoink.zodiac.Client;
+import cat.yoink.zodiac.module.manager.module.Category;
+import cat.yoink.zodiac.module.manager.module.Module;
+import me.zero.alpine.listener.EventHandler;
+import me.zero.alpine.listener.Listener;
 import net.minecraft.util.EnumHand;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.RayTraceResult;
-import org.lwjgl.input.Mouse;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
+import org.lwjgl.input.Mouse;
 
 /**
  * by svintus
  */
-public class Multitask extends Module {
-    public Multitask() {
+public class MultiTask extends Module {
+
+    public MultiTask() {
         super ("Multitask", "completes multiple tasks at once", Category.COMBAT, true);
     }
-            
-    @SubscribeEvent
-    public void onMouseInput(final InputEvent.MouseInputEvent event) {
-        if (Mouse.getEventButtonState() && mc.player != null && mc.objectMouseOver.typeOfHit.equals((Object)RayTraceResult.Type.ENTITY) && mc.player.isHandActive() && (mc.gameSettings.keyBindAttack.isPressed() || Mouse.getEventButton() == mc.gameSettings.keyBindAttack.getKeyCode())) {
-            mc.playerController.attackEntity((EntityPlayer) mc.player, mc.objectMouseOver.entityHit);
+
+
+    /*
+    not sure what this is supposed to do but ok
+     */
+
+    @EventHandler
+    public Listener<InputEvent.MouseInputEvent> mouseInputEventListener = new Listener<>(event -> {
+        if (Mouse.getEventButtonState() && mc.player != null && mc.objectMouseOver.typeOfHit.equals(RayTraceResult.Type.ENTITY) && mc.player.isHandActive() && (mc.gameSettings.keyBindAttack.isPressed() || Mouse.getEventButton() == mc.gameSettings.keyBindAttack.getKeyCode())) {
+            mc.playerController.attackEntity(mc.player, mc.objectMouseOver.entityHit);
             mc.player.swingArm(EnumHand.MAIN_HAND);
         }
+    });
+
+
+    @Override
+    public void addSubscription() {
+        Client.EVENT_BUS.subscribe(this);
+    }
+
+    @Override
+    public void removeSubscription() {
+        Client.EVENT_BUS.unsubscribe(this);
     }
 }
