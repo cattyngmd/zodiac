@@ -23,6 +23,7 @@ public class ModuleManager {
         modules.add(new Criticals());
         modules.add(new ClickGUI());
         modules.add(new AutoPorn());
+        modules.add(new AutoEZ());
         modules.add(new Sprint());
     }
 
