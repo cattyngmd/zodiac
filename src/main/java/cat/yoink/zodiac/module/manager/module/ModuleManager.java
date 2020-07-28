@@ -17,6 +17,7 @@ public class ModuleManager {
         modules.add(new SmartOffhand());
         modules.add(new ChatSuffix());
         modules.add(new MultiTask());
+        modules.add(new NoSlowDown());
         modules.add(new Watermark());
         modules.add(new Arraylist());
         modules.add(new NoHurtCam());
