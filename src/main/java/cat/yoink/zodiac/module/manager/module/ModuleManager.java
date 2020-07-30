@@ -26,6 +26,7 @@ public class ModuleManager {
         modules.add(new AutoPorn());
         modules.add(new AutoEZ());
         modules.add(new Sprint());
+        modules.add(new Strafe());
     }
 
 
