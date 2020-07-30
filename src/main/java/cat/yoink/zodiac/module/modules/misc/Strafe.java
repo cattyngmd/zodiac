@@ -9,12 +9,11 @@ import net.minecraft.util.math.MathHelper;
 
 import java.util.Objects;
 
-public class Speed extends Module {
-    public Speed() {
-        super("Strafe", Category.MOVEMENT, "Makes you go fast");
+public class Strafe extends Module {
+    public Strafe() {
+        super("Strafe", "franzj presents!", Category.MISC, true);
+
     }
-
-
 
     Setting.b ground;
 
