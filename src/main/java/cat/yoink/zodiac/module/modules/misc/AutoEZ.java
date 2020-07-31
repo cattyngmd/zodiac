@@ -30,7 +30,7 @@ public class AutoEZ extends Module {
         super("AutoEZ", "sends a message in chat when you kill someone", Category.MISC, true);
     }
 
-    // TODO: Cannot resolve symbol 'targetedPlayers'
+    ConcurrentHashMap targetedPlayers = null; // idk
 
 
     @EventHandler

@@ -1,37 +1,37 @@
 package cat.yoink.zodiac.module.modules.misc;
 
 import cat.yoink.zodiac.event.events.MotionEvent;
+import cat.yoink.zodiac.module.manager.module.Category;
 import cat.yoink.zodiac.module.manager.module.Module;
 import cat.yoink.zodiac.module.manager.setting.Setting;
 import net.minecraft.init.MobEffects;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.math.MathHelper;
 
 import java.util.Objects;
 
 public class Strafe extends Module {
+    Setting ground;
+
     public Strafe() {
         super("Strafe", "franzj presents!", Category.MISC, true);
 
+        ground = new Setting("Ground", this, true);
+
+        addSetting(ground);
+
     }
 
-    Setting.b ground;
 
-    public void setup(){
-        ground = this.registerB("Ground", true);
-    }
-
-
+// ok
     public void onMotion(MotionEvent event) {
         if (mc.player != null) {
             if (!mc.player.isSneaking() && !mc.player.isOnLadder() &&  !mc.player.isInLava() && !mc.player.isInWater() && !mc.player.capabilities.isFlying) {
-                if (this.ground.getValue() || !mc.player.onGround) {
+                if (this.ground.getBoolValue() || !mc.player.onGround) {
                         float playerSpeed = 0.2873F;
                         float moveForward = mc.player.movementInput.moveForward;
                         float moveStrafe = mc.player.movementInput.moveStrafe;
                         float rotationYaw = mc.player.rotationYaw;
                         if (mc.player.isPotionActive(MobEffects.SPEED)) {
-                            int amplifier = ((PotionEffect) Objects.requireNonNull(mc.player.getActivePotionEffect(MobEffects.SPEED))).getAmplifier();
+                            int amplifier = Objects.requireNonNull(mc.player.getActivePotionEffect(MobEffects.SPEED)).getAmplifier();
                             playerSpeed *= 1.0F + 0.2F * (float)(amplifier + 1);
                         }
 
@@ -54,8 +54,8 @@ public class Strafe extends Module {
                                 }
                             }
 
-                            double sin = Math.sin(Math.toRadians((double)(rotationYaw + 90.0F)));
-                            double cos = Math.cos(Math.toRadians((double)(rotationYaw + 90.0F)));
+                            double sin = Math.sin(Math.toRadians(rotationYaw + 90.0F));
+                            double cos = Math.cos(Math.toRadians(rotationYaw + 90.0F));
                             event.setX((double)(moveForward * playerSpeed) * cos + (double)(moveStrafe * playerSpeed) * sin);
                             event.setZ((double)(moveForward * playerSpeed) * sin - (double)(moveStrafe * playerSpeed) * cos);
                         }

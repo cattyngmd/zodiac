@@ -1,18 +1,23 @@
-package cat.yoink.zodiac.module.modules.misc
+package cat.yoink.zodiac.module.modules.misc;
 
-import cat.yoink.zodiac.module.manager.Module
-import cat.yoink.zodiac.Client
-import cat.yoink.zodiac.event.handler.EventHandler
-import me.zero.alpine.listener.Listener
+import cat.yoink.zodiac.Client;
+import cat.yoink.zodiac.module.manager.module.Category;
+import cat.yoink.zodiac.module.manager.module.Module;
+import me.zero.alpine.listener.EventHandler;
+import me.zero.alpine.listener.Listener;
+import net.minecraftforge.client.event.InputUpdateEvent;
 
-public class NoSlowDown extends module {
- public NoSlowDown() {
-   super("NoSlowDown", "doesnt slow when doin shit.", Category.MISC, true);
+public class NoSlowDown extends Module {
+
+    public NoSlowDown() {
+
+        super("NoSlowDown", "doesnt slow when doin shit.", Category.MISC, true);
 
     }
-    
 
-@EventHandler
+    // mixin might be needed
+
+    @EventHandler
     private Listener<InputUpdateEvent> eventListener = new Listener<>(event -> {
         if (mc.player.isHandActive() && !mc.player.isRiding()) {
             event.getMovementInput().moveStrafe *= 5;
