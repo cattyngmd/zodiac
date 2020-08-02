@@ -3,15 +3,20 @@ package cat.yoink.zodiac.module.manager.module;
 import cat.yoink.zodiac.module.manager.setting.Setting;
 import cat.yoink.zodiac.module.manager.setting.SettingManager;
 import cat.yoink.zodiac.module.modules.combat.*;
-import cat.yoink.zodiac.module.modules.render.*;
 import cat.yoink.zodiac.module.modules.misc.*;
+import cat.yoink.zodiac.module.modules.render.Arraylist;
+import cat.yoink.zodiac.module.modules.render.ClickGUI;
+import cat.yoink.zodiac.module.modules.render.NoHurtCam;
+import cat.yoink.zodiac.module.modules.render.Watermark;
 
 import java.util.ArrayList;
 
-public class ModuleManager {
+public class ModuleManager
+{
     public static ArrayList<Module> modules = new ArrayList<>();
 
-    public static void initialize() {
+    public static void initialize()
+    {
         modules.add(new StrengthDetect());
         modules.add(new TotemOffhand());
         modules.add(new FastInteract());
@@ -33,28 +38,36 @@ public class ModuleManager {
     }
 
 
-    public static Module getModuleByName(String name) {
-        for (Module module : getModules()) {
-            if (module.getName().equalsIgnoreCase(name)) {
+    public static Module getModuleByName(String name)
+    {
+        for (Module module : getModules())
+        {
+            if (module.getName().equalsIgnoreCase(name))
+            {
                 return module;
             }
         }
         return null;
     }
 
-    public static boolean hasSettings(Module module) {
+    public static boolean hasSettings(Module module)
+    {
         ArrayList<Setting> modSettings;
         modSettings = SettingManager.getSettingByModule(module);
         return modSettings != null;
     }
 
-    public static ArrayList<Module> getModules() {
+    public static ArrayList<Module> getModules()
+    {
         return modules;
     }
 
-    public static boolean isModuleEnabled(String name) {
-        for (Module module : getModules()) {
-            if (module.getName().equalsIgnoreCase(name) && module.isEnabled()) {
+    public static boolean isModuleEnabled(String name)
+    {
+        for (Module module : getModules())
+        {
+            if (module.getName().equalsIgnoreCase(name) && module.isEnabled())
+            {
                 return true;
             }
         }

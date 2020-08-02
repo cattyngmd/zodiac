@@ -4,7 +4,8 @@ import cat.yoink.zodiac.module.manager.module.Module;
 
 import java.util.ArrayList;
 
-public class Setting {
+public class Setting
+{
     private String name;
     private Module parent;
     private String type;
@@ -19,7 +20,8 @@ public class Setting {
     private ArrayList<String> options;
 
     // Integer
-    public Setting(String name, Module parent, int intMinValue, int intValue, int intMaxValue) {
+    public Setting(String name, Module parent, int intMinValue, int intValue, int intMaxValue)
+    {
         setName(name);
         setParent(parent);
         setIntMinValue(intMinValue);
@@ -29,7 +31,8 @@ public class Setting {
     }
 
     // Boolean
-    public Setting(String name, Module parent, boolean boolValue) {
+    public Setting(String name, Module parent, boolean boolValue)
+    {
         setName(name);
         setParent(parent);
         setBoolValue(boolValue);
@@ -37,7 +40,8 @@ public class Setting {
     }
 
     // Enum
-    public Setting(String name, Module parent, String enumValue, ArrayList<String> options) {
+    public Setting(String name, Module parent, String enumValue, ArrayList<String> options)
+    {
         setName(name);
         setParent(parent);
         setEnumValue(enumValue);
@@ -45,67 +49,108 @@ public class Setting {
         setType("enum");
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
-    public void setName(String name) {
+
+    public void setName(String name)
+    {
         this.name = name;
     }
-    public Module getParent() {
+
+    public Module getParent()
+    {
         return parent;
     }
-    public void setParent(Module parent) {
+
+    public void setParent(Module parent)
+    {
         this.parent = parent;
     }
-    public String getType() {
+
+    public String getType()
+    {
         return type;
     }
-    public void setType(String type) {
+
+    public void setType(String type)
+    {
         this.type = type;
     }
-    public int getIntMinValue() {
+
+    public int getIntMinValue()
+    {
         return intMinValue;
     }
-    public void setIntMinValue(int intMinValue) {
+
+    public void setIntMinValue(int intMinValue)
+    {
         this.intMinValue = intMinValue;
     }
-    public int getIntMaxValue() {
+
+    public int getIntMaxValue()
+    {
         return intMaxValue;
     }
-    public void setIntMaxValue(int intMaxValue) {
+
+    public void setIntMaxValue(int intMaxValue)
+    {
         this.intMaxValue = intMaxValue;
     }
-    public int getIntValue() {
+
+    public int getIntValue()
+    {
         return intValue;
     }
-    public void setIntValue(int intDefaultValue) {
+
+    public void setIntValue(int intDefaultValue)
+    {
         this.intValue = intDefaultValue;
     }
-    public boolean getBoolValue() {
+
+    public boolean getBoolValue()
+    {
         return boolValue;
     }
-    public void setBoolValue(boolean boolValue) {
+
+    public void setBoolValue(boolean boolValue)
+    {
         this.boolValue = boolValue;
     }
-    public String getEnumValue() {
+
+    public String getEnumValue()
+    {
         return enumValue;
     }
-    public void setEnumValue(String enumValue) {
+
+    public void setEnumValue(String enumValue)
+    {
         this.enumValue = enumValue;
     }
-    public ArrayList<String> getOptions() {
+
+    public ArrayList<String> getOptions()
+    {
         return options;
     }
-    public void setOptions(ArrayList<String> options) {
+
+    public void setOptions(ArrayList<String> options)
+    {
         this.options = options;
     }
-    public boolean isInteger() {
+
+    public boolean isInteger()
+    {
         return type.equals("int");
     }
-    public boolean isBoolean() {
+
+    public boolean isBoolean()
+    {
         return type.equals("boolean");
     }
-    public boolean isEnum() {
+
+    public boolean isEnum()
+    {
         return type.equals("enum");
     }
 

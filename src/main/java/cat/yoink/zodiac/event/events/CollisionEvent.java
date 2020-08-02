@@ -1,24 +1,35 @@
 package cat.yoink.zodiac.event.events;
 
 import cat.yoink.zodiac.event.manager.Event;
+import net.minecraft.entity.Entity;
 
-//by floppa
-public class MotionEvent extends Event
+public class CollisionEvent extends Event
 {
-    private double x;
-    private double y;
-    private double z;
 
-    public MotionEvent(double x, double y, double z)
+    double x, y, z;
+    private Entity entity;
+
+    public CollisionEvent(Entity entity, double x, double y, double z)
     {
+        this.entity = entity;
         this.x = x;
         this.y = y;
         this.z = z;
     }
 
+    public Entity getEntity()
+    {
+        return entity;
+    }
+
+    public void setEntity(Entity entity)
+    {
+        this.entity = entity;
+    }
+
     public double getX()
     {
-        return this.x;
+        return x;
     }
 
     public void setX(double x)
@@ -28,7 +39,7 @@ public class MotionEvent extends Event
 
     public double getY()
     {
-        return this.y;
+        return y;
     }
 
     public void setY(double y)
@@ -38,7 +49,7 @@ public class MotionEvent extends Event
 
     public double getZ()
     {
-        return this.z;
+        return z;
     }
 
     public void setZ(double z)

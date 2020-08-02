@@ -12,7 +12,8 @@ import net.minecraft.util.math.Vec3d;
 import java.util.Arrays;
 import java.util.List;
 
-public class BlockUtil {
+public class BlockUtil
+{
 
     public static final List<Block> blackList = Arrays.asList(
             Blocks.ENDER_CHEST,
@@ -49,7 +50,8 @@ public class BlockUtil {
 
     private static final Minecraft mc = Minecraft.getMinecraft();
 
-    private static float[] getLegitRotations(Vec3d vec) {
+    private static float[] getLegitRotations(Vec3d vec)
+    {
         Vec3d eyesPos = getEyesPos();
 
         double diffX = vec.x - eyesPos.x;
@@ -68,13 +70,15 @@ public class BlockUtil {
                         .wrapDegrees(pitch - mc.player.rotationPitch)};
     }
 
-    private static Vec3d getEyesPos() {
+    private static Vec3d getEyesPos()
+    {
         return new Vec3d(mc.player.posX,
                 mc.player.posY + mc.player.getEyeHeight(),
                 mc.player.posZ);
     }
 
-    public static void faceVectorPacketInstant(Vec3d vec) {
+    public static void faceVectorPacketInstant(Vec3d vec)
+    {
         float[] rotations = getLegitRotations(vec);
 
         mc.player.connection.sendPacket(new CPacketPlayer.Rotation(rotations[0],
@@ -82,15 +86,18 @@ public class BlockUtil {
     }
 
 
-    public static boolean canBeClicked(BlockPos pos) {
+    public static boolean canBeClicked(BlockPos pos)
+    {
         return !getBlock(pos).canCollideCheck(getState(pos), false);
     }
 
-    private static Block getBlock(BlockPos pos) {
+    private static Block getBlock(BlockPos pos)
+    {
         return getState(pos).getBlock();
     }
 
-    private static IBlockState getState(BlockPos pos) {
+    private static IBlockState getState(BlockPos pos)
+    {
         return mc.world.getBlockState(pos);
     }
 

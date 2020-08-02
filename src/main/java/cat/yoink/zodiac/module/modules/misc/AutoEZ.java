@@ -20,34 +20,33 @@ import java.util.concurrent.ConcurrentHashMap;
 //commented due to brain issues import cat.yoink.zodiac.event.Listener
 
 /**
-
  * by svintus/floppa
-
  */
-public class AutoEZ extends Module {
-
-    public AutoEZ() {
-        super("AutoEZ", "sends a message in chat when you kill someone", Category.MISC, true);
-    }
+public class AutoEZ extends Module
+{
 
     ConcurrentHashMap targetedPlayers = null; // idk
-
-
     @EventHandler
-    private Listener<PacketEvent.Send> sendPacketListener = new Listener<>(event -> {
-        if (mc.player != null) {
-            if (targetedPlayers == null) {
+    private final Listener<PacketEvent.Send> sendPacketListener = new Listener<>(event ->
+    {
+        if (mc.player != null)
+        {
+            if (targetedPlayers == null)
+            {
                 targetedPlayers = new ConcurrentHashMap();
             }
 
-            if (event.getPacket() instanceof CPacketUseEntity) {
+            if (event.getPacket() instanceof CPacketUseEntity)
+            {
                 CPacketUseEntity cPacketUseEntity = (CPacketUseEntity) event.getPacket();
 
-                if (cPacketUseEntity.getAction().equals(CPacketUseEntity.Action.ATTACK)) {
+                if (cPacketUseEntity.getAction().equals(CPacketUseEntity.Action.ATTACK))
+                {
 
                     Entity targetEntity = cPacketUseEntity.getEntityFromWorld(mc.world);
 
-                    if (targetEntity instanceof EntityPlayer) {
+                    if (targetEntity instanceof EntityPlayer)
+                    {
 
                         addTargetedPlayer(targetEntity.getName());
                     }
@@ -55,21 +54,27 @@ public class AutoEZ extends Module {
             }
         }
     });
-
     @EventHandler
-    private Listener<LivingDeathEvent> livingDeathEventListener = new Listener<>(event -> {
-        if (mc.player != null) {
-            if (targetedPlayers == null) {
+    private final Listener<LivingDeathEvent> livingDeathEventListener = new Listener<>(event ->
+    {
+        if (mc.player != null)
+        {
+            if (targetedPlayers == null)
+            {
                 targetedPlayers = new ConcurrentHashMap();
             }
 
             EntityLivingBase entity = event.getEntityLiving();
-            if (entity != null) {
-                if (entity instanceof EntityPlayer) {
+            if (entity != null)
+            {
+                if (entity instanceof EntityPlayer)
+                {
                     EntityPlayer player = (EntityPlayer) entity;
-                    if (player.getHealth() <= 0.0F) {
+                    if (player.getHealth() <= 0.0F)
+                    {
                         String name = player.getName();
-                        if (shouldAnnounce(name)) {
+                        if (shouldAnnounce(name))
+                        {
                             doAnnounce(name);
                         }
 
@@ -79,30 +84,43 @@ public class AutoEZ extends Module {
         }
     });
 
-    public void onEnable() {
+    public AutoEZ()
+    {
+        super("AutoEZ", "sends a message in chat when you kill someone", Category.MISC, true);
+    }
+
+    public void onEnable()
+    {
         targetedPlayers = new ConcurrentHashMap();
         Client.EVENT_BUS.subscribe(this);
     }
 
-    public void onDisable() {
+    public void onDisable()
+    {
         targetedPlayers = null;
         Client.EVENT_BUS.unsubscribe(this);
     }
 
-    public void onUpdate() {
-        if (targetedPlayers == null) {
+    public void onUpdate()
+    {
+        if (targetedPlayers == null)
+        {
             targetedPlayers = new ConcurrentHashMap();
         }
 
         Iterator var1 = mc.world.getLoadedEntityList().iterator();
 
-        while (var1.hasNext()) {
+        while (var1.hasNext())
+        {
             Entity entity = (Entity) var1.next();
-            if (entity instanceof EntityPlayer) {
+            if (entity instanceof EntityPlayer)
+            {
                 EntityPlayer player = (EntityPlayer) entity;
-                if (player.getHealth() <= 0.0F) {
+                if (player.getHealth() <= 0.0F)
+                {
                     String name = player.getName();
-                    if (shouldAnnounce(name)) {
+                    if (shouldAnnounce(name))
+                    {
                         doAnnounce(name);
                         break;
                     }
@@ -110,36 +128,46 @@ public class AutoEZ extends Module {
             }
         }
 
-        targetedPlayers.forEach((namex, timeout) -> {
-            if ((int) timeout <= 0) {
+        targetedPlayers.forEach((namex, timeout) ->
+        {
+            if ((int) timeout <= 0)
+            {
                 targetedPlayers.remove(namex);
-            } else {
+            }
+            else
+            {
                 targetedPlayers.put(namex, (int) timeout - 1);
             }
 
         });
     }
 
-    private boolean shouldAnnounce(String name) {
+    private boolean shouldAnnounce(String name)
+    {
         return targetedPlayers.containsKey(name);
     }
 
-    private void doAnnounce(String name) {
+    private void doAnnounce(String name)
+    {
         targetedPlayers.remove(name);
 
         String message = "you just got ezd by zodiac, gonn cry bout it?";
 
         String messageSanitized = message.replaceAll("ยง", "").replace("{name}", name);
-        if (messageSanitized.length() > 255) {
+        if (messageSanitized.length() > 255)
+        {
             messageSanitized = messageSanitized.substring(0, 255);
         }
 
         mc.player.connection.sendPacket(new CPacketChatMessage(messageSanitized));
     }
 
-    public void addTargetedPlayer(String name) {
-        if (!Objects.equals(name, mc.player.getName())) {
-            if (targetedPlayers == null) {
+    public void addTargetedPlayer(String name)
+    {
+        if (!Objects.equals(name, mc.player.getName()))
+        {
+            if (targetedPlayers == null)
+            {
                 targetedPlayers = new ConcurrentHashMap();
             }
 

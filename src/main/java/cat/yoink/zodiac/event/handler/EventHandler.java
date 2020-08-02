@@ -20,102 +20,146 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Keyboard;
 
-public class EventHandler {
+public class EventHandler
+{
     public static EventHandler INSTANCE;
 
-    public EventHandler() {
+    public EventHandler()
+    {
         INSTANCE = this;
     }
 
-    public void initialize() {
+    public void initialize()
+    {
         Client.EVENT_BUS.subscribe(this);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     @SubscribeEvent
-    public void onKeyInput(InputEvent.KeyInputEvent event) {
+    public void onKeyInput(InputEvent.KeyInputEvent event)
+    {
         Client.EVENT_BUS.post(event);
 
-        if (Keyboard.getEventKeyState()) {
-            for (Module module : ModuleManager.getModules()) {
-                if (Keyboard.getEventKey() == module.getBind()) {
+        if (Keyboard.getEventKeyState())
+        {
+            for (Module module : ModuleManager.getModules())
+            {
+                if (Keyboard.getEventKey() == module.getBind())
+                {
                     module.toggle();
                 }
             }
         }
     }
+
     @SubscribeEvent
-    public void clientChatEvent(ClientChatEvent event) {
-        if (event.getMessage().startsWith(CommandManager.getPrefix())) {
-            try {
+    public void clientChatEvent(ClientChatEvent event)
+    {
+        if (event.getMessage().startsWith(CommandManager.getPrefix()))
+        {
+            try
+            {
                 event.setCanceled(true);
                 Minecraft.getMinecraft().ingameGUI.getChatGUI().addToSentMessages(event.getMessage());
                 CommandManager.onCommand(event.getMessage());
                 return;
-            } catch (Exception ignored) {}
+            }
+            catch (Exception ignored)
+            {
+            }
         }
         Helper.onChatSend(event);
         Client.EVENT_BUS.post(event);
     }
+
     @SubscribeEvent
-    public void onTick(TickEvent.ClientTickEvent event) {
+    public void onTick(TickEvent.ClientTickEvent event)
+    {
         Helper.onUpdate();
         Client.EVENT_BUS.post(event);
     }
+
     @SubscribeEvent
-    public void onRender(RenderGameOverlayEvent.Post event) {
+    public void onRender(RenderGameOverlayEvent.Post event)
+    {
         Client.EVENT_BUS.post(event);
     }
+
     @SubscribeEvent
-    public void onRenderScreen(RenderGameOverlayEvent.Text event) {
+    public void onRenderScreen(RenderGameOverlayEvent.Text event)
+    {
         Client.EVENT_BUS.post(event);
     }
+
     @SubscribeEvent
-    public void onChatReceived(ClientChatReceivedEvent event){
+    public void onChatReceived(ClientChatReceivedEvent event)
+    {
         Client.EVENT_BUS.post(event);
     }
+
     @SubscribeEvent
-    public void onAttackEntity(AttackEntityEvent event) {
+    public void onAttackEntity(AttackEntityEvent event)
+    {
         Client.EVENT_BUS.post(event);
     }
+
     @SubscribeEvent
-    public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event){
+    public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event)
+    {
         Client.EVENT_BUS.post(event);
     }
+
     @SubscribeEvent
-    public void onDrawBlockHighlight(DrawBlockHighlightEvent event){
+    public void onDrawBlockHighlight(DrawBlockHighlightEvent event)
+    {
         Client.EVENT_BUS.post(event);
     }
+
     @SubscribeEvent
-    public void onRenderBlockOverlay(RenderBlockOverlayEvent event){
+    public void onRenderBlockOverlay(RenderBlockOverlayEvent event)
+    {
         Client.EVENT_BUS.post(event);
     }
+
     @SubscribeEvent
-    public void onLivingDamage(LivingDamageEvent event){
+    public void onLivingDamage(LivingDamageEvent event)
+    {
         Client.EVENT_BUS.post(event);
     }
+
     @SubscribeEvent
-    public void onLivingEntityUseItemFinish(LivingEntityUseItemEvent.Finish event) {
+    public void onLivingEntityUseItemFinish(LivingEntityUseItemEvent.Finish event)
+    {
         Client.EVENT_BUS.post(event);
     }
+
     @SubscribeEvent
-    public void onInputUpdate(InputUpdateEvent event){
+    public void onInputUpdate(InputUpdateEvent event)
+    {
         Client.EVENT_BUS.post(event);
     }
+
     @SubscribeEvent
-    public void onLivingDeath(LivingDeathEvent event){
+    public void onLivingDeath(LivingDeathEvent event)
+    {
         Client.EVENT_BUS.post(event);
     }
+
     @SubscribeEvent
-    public void onWorldUnload(WorldEvent.Unload event) {
+    public void onWorldUnload(WorldEvent.Unload event)
+    {
         Client.EVENT_BUS.post(event);
     }
+
     @SubscribeEvent
-    public void onWorldLoad(WorldEvent.Load event) {
+    public void onWorldLoad(WorldEvent.Load event)
+    {
         Client.EVENT_BUS.post(event);
     }
+
     @SubscribeEvent
-    public void onPlayerInteractLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
+    public void onPlayerInteractLeftClickBlock(PlayerInteractEvent.LeftClickBlock event)
+    {
         Client.EVENT_BUS.post(event);
     }
 

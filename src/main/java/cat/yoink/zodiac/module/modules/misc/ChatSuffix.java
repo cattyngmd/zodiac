@@ -7,16 +7,19 @@ import net.minecraftforge.client.event.ClientChatEvent;
 
 import java.util.ArrayList;
 
-public class ChatSuffix extends Module {
-    public ChatSuffix() {
-        super("ChatSuffix", "Adds a suffix to your chat messages.", Category.MISC, true);
-    }
-
+public class ChatSuffix extends Module
+{
     public ArrayList<String> prefixes;
     Setting blue;
 
+    public ChatSuffix()
+    {
+        super("ChatSuffix", "Adds a suffix to your chat messages.", Category.MISC, true);
+    }
+
     @Override
-    public void init() {
+    public void init()
+    {
         blue = new Setting("Blue", this, false);
         addSetting(blue);
 
@@ -34,8 +37,10 @@ public class ChatSuffix extends Module {
     }
 
     @Override
-    public void onChatSend(ClientChatEvent event) {
-        for (String prefix : prefixes) {
+    public void onChatSend(ClientChatEvent event)
+    {
+        for (String prefix : prefixes)
+        {
             if (event.getMessage().startsWith(prefix)) return;
         }
 

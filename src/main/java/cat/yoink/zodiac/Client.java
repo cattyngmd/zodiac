@@ -2,7 +2,6 @@ package cat.yoink.zodiac;
 
 import cat.yoink.zodiac.command.manager.CommandManager;
 import cat.yoink.zodiac.event.handler.EventHandler;
-// import cat.yoink.zodiac.gui.ClickGUI;
 import cat.yoink.zodiac.gui.ClickGUI;
 import cat.yoink.zodiac.module.manager.module.ModuleManager;
 import cat.yoink.zodiac.module.manager.setting.SettingManager;
@@ -17,7 +16,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
  */
 
 @Mod(modid = Client.MOD_ID, name = Client.MOD_NAME, version = Client.VERSION)
-public class Client {
+public class Client
+{
 
     public static final String MOD_ID = "zodiac";
     public static final String MOD_NAME = "Zodiac";
@@ -33,8 +33,14 @@ public class Client {
     public ClickGUI clickGUI;
     public RPC rpc;
 
+    public static Client getInstance()
+    {
+        return INSTANCE;
+    }
+
     @Mod.EventHandler
-    public void init(FMLInitializationEvent event) {
+    public void init(FMLInitializationEvent event)
+    {
         settingManager = new SettingManager();
         EventHandler = new EventHandler();
         clickGUI = new ClickGUI();
@@ -43,9 +49,5 @@ public class Client {
         CommandManager.initialize();
         rpc = new RPC();
         SettingManager.getSettingByID(69);
-    }
-
-    public static Client getInstance() {
-        return INSTANCE;
     }
 }

@@ -11,17 +11,22 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.WeakHashMap;
 
-public class StrengthDetect extends Module {
-    public StrengthDetect() {
+public class StrengthDetect extends Module
+{
+    public static final Minecraft mc = Minecraft.getMinecraft();
+    private final Set<EntityPlayer> str = Collections.newSetFromMap(new WeakHashMap());
+
+    public StrengthDetect()
+    {
         super("StrengthDetect", "Notifies when someone drinks strength", Category.COMBAT, true);
     }
 
-    private Set<EntityPlayer> str = Collections.newSetFromMap(new WeakHashMap());
-    public static final Minecraft mc = Minecraft.getMinecraft();
-
-    public void onUpdate() {
-        for (EntityPlayer player : mc.world.playerEntities) {
-            if (player.isPotionActive(MobEffects.STRENGTH) && !this.str.contains(player)) {
+    public void onUpdate()
+    {
+        for (EntityPlayer player : mc.world.playerEntities)
+        {
+            if (player.isPotionActive(MobEffects.STRENGTH) && !this.str.contains(player))
+            {
                 CommandUtil.sendChatMessage(String.format("&7%s drank strength.", player.getDisplayNameString()));
                 this.str.add(player);
             }

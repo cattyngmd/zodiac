@@ -5,34 +5,37 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentBase;
 
-import java.io.BufferedInputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CommandUtil {
+public class CommandUtil
+{
 
-    public static void sendChatMessage(String message){
+    public static void sendChatMessage(String message)
+    {
         sendRawChatMessage("&7[&4Zodiac&7] &r" + message);
     }
 
-    public static void sendRawChatMessage(String message) {
+    public static void sendRawChatMessage(String message)
+    {
         EntityPlayerSP SPPlayer = Minecraft.getMinecraft().player;
         SPPlayer.sendMessage(new ChatMessage(message));
     }
 
-    public static class ChatMessage extends TextComponentBase {
+    public static class ChatMessage extends TextComponentBase
+    {
 
         String text;
 
-        public ChatMessage(String text) {
+        public ChatMessage(String text)
+        {
 
             Pattern p = Pattern.compile("&[0123456789abcdefrlosmk]");
             Matcher m = p.matcher(text);
             StringBuffer sb = new StringBuffer();
 
-            while (m.find()) {
+            while (m.find())
+            {
                 String replacement = "\u00A7" + m.group().substring(1);
                 m.appendReplacement(sb, replacement);
             }
@@ -42,12 +45,14 @@ public class CommandUtil {
             this.text = sb.toString();
         }
 
-        public String getUnformattedComponentText() {
+        public String getUnformattedComponentText()
+        {
             return text;
         }
 
         @Override
-        public ITextComponent createCopy() {
+        public ITextComponent createCopy()
+        {
             return new ChatMessage(text);
         }
 

@@ -1,6 +1,7 @@
 package cat.yoink.zodiac.module.manager.module;
 
-public enum Category {
+public enum Category
+{
     COMBAT("Combat", 20),
     MISC("Misc", 160),
     RENDER("Render", 280);
@@ -12,7 +13,8 @@ public enum Category {
     private int height;
     private boolean expanded;
 
-    Category(final String name, int X) {
+    Category(final String name, int X)
+    {
         setName(name);
         setX(X);
         setY(20);
@@ -21,40 +23,63 @@ public enum Category {
         setExpanded(true);
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
-    public void setName(String name) {
+
+    public void setName(String name)
+    {
         this.name = name;
     }
-    public int getX() {
+
+    public int getX()
+    {
         return X;
     }
-    public void setX(int x) {
+
+    public void setX(int x)
+    {
         X = x;
     }
-    public int getY() {
+
+    public int getY()
+    {
         return Y;
     }
-    public void setY(int y) {
+
+    public void setY(int y)
+    {
         Y = y;
     }
-    public int getWidth() {
+
+    public int getWidth()
+    {
         return width;
     }
-    public void setWidth(int width) {
+
+    public void setWidth(int width)
+    {
         this.width = width;
     }
-    public int getHeight() {
+
+    public int getHeight()
+    {
         return height;
     }
-    public void setHeight(int height) {
+
+    public void setHeight(int height)
+    {
         this.height = height;
     }
-    public boolean isExpanded() {
+
+    public boolean isExpanded()
+    {
         return expanded;
     }
-    public void setExpanded(boolean expanded) {
+
+    public void setExpanded(boolean expanded)
+    {
         this.expanded = expanded;
     }
 }

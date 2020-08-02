@@ -4,7 +4,8 @@ import cat.yoink.zodiac.module.manager.module.Category;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 
-public class ClickGUI extends GuiScreen {
+public class ClickGUI extends GuiScreen
+{
 
     int X = 100;
     int Y = 100;
@@ -17,11 +18,13 @@ public class ClickGUI extends GuiScreen {
     boolean d = false;
 
     @Override
-    public void drawScreen(int mX, int mY, float partialTicks) {
+    public void drawScreen(int mX, int mY, float partialTicks)
+    {
 
         FontRenderer fR = mc.fontRenderer;
 
-        if (d) {
+        if (d)
+        {
             X = mX - xB;
             Y = mY - yB;
         }
@@ -31,7 +34,8 @@ public class ClickGUI extends GuiScreen {
         int cX = X + 10;
         int cY = Y + 10;
 
-        for (Category c : Category.values()) {
+        for (Category c : Category.values())
+        {
 
             drawString(fR, c.getName(), cX, cY, 0xffffffff);
 
@@ -43,9 +47,11 @@ public class ClickGUI extends GuiScreen {
 
 
     @Override
-    protected void mouseClicked(int mX, int mY, int mouseButton) {
+    protected void mouseClicked(int mX, int mY, int mouseButton)
+    {
 
-        if (isHover(X, Y, W, 20, mX, mY)) {
+        if (isHover(X, Y, W, 20, mX, mY))
+        {
             d = true;
 
             xB = mX - X;
@@ -54,11 +60,13 @@ public class ClickGUI extends GuiScreen {
     }
 
     @Override
-    protected void mouseReleased(int mouseX, int mouseY, int state) {
+    protected void mouseReleased(int mouseX, int mouseY, int state)
+    {
         d = false;
     }
 
-    public boolean isHover(int X, int Y, int W, int H, int mX, int mY) {
+    public boolean isHover(int X, int Y, int W, int H, int mX, int mY)
+    {
         return mX >= X && mX <= X + W && mY >= Y && mY <= Y + H;
     }
 }

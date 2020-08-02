@@ -7,7 +7,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ClientChatEvent;
 import org.lwjgl.input.Keyboard;
 
-public class Module {
+public class Module
+{
+    protected static final Minecraft mc = Minecraft.getMinecraft();
     private String name;
     private String description;
     private Category category;
@@ -16,9 +18,8 @@ public class Module {
     private boolean expanded;
     private boolean enabled;
 
-    protected static final Minecraft mc = Minecraft.getMinecraft();
-
-    public Module(String name, String description, Category category, boolean drawn) {
+    public Module(String name, String description, Category category, boolean drawn)
+    {
         setName(name);
         setDescription(description);
         setCategory(category);
@@ -28,88 +29,131 @@ public class Module {
         init();
     }
 
-    public void toggle() {
-        if (isEnabled()) disable();
+    public void toggle()
+    {
+        if (isEnabled())
+        {
+            disable();
+        }
         else if (!isEnabled()) enable();
     }
-    public void enable() {
+
+    public void enable()
+    {
         if (isDrawn()) CommandUtil.sendChatMessage(String.format("&aEnabled %s", getName()));
         addSubscription();
         onEnable();
         setEnabled(true);
     }
-    public void disable() {
+
+    public void disable()
+    {
         if (isDrawn()) CommandUtil.sendChatMessage(String.format("&cDisabled %s", getName()));
         removeSubscription();
         onDisable();
         setEnabled(false);
     }
 
-    public void init() {}
-    public void onEnable() {}
-    public void onDisable() {}
-    public void addSubscription() {}
-    public void removeSubscription() {}
-    public void onUpdate() {}
-    public void onChatSend(ClientChatEvent event) {}
+    public void init()
+    {
+    }
 
-    public void addSetting(Setting setting){
+    public void onEnable()
+    {
+    }
+
+    public void onDisable()
+    {
+    }
+
+    public void addSubscription()
+    {
+    }
+
+    public void removeSubscription()
+    {
+    }
+
+    public void onUpdate()
+    {
+    }
+
+    public void onChatSend(ClientChatEvent event)
+    {
+    }
+
+    public void addSetting(Setting setting)
+    {
         SettingManager.addSetting(setting);
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
 
-    public String getDescription() {
+    public String getDescription()
+    {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(String description)
+    {
         this.description = description;
     }
 
-    public Category getCategory() {
+    public Category getCategory()
+    {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(Category category)
+    {
         this.category = category;
     }
 
-    public int getBind() {
+    public int getBind()
+    {
         return bind;
     }
 
-    public void setBind(int bind) {
+    public void setBind(int bind)
+    {
         this.bind = bind;
     }
 
-    public boolean isDrawn() {
+    public boolean isDrawn()
+    {
         return drawn;
     }
 
-    public void setDrawn(boolean drawn) {
+    public void setDrawn(boolean drawn)
+    {
         this.drawn = drawn;
     }
 
-    public boolean isExpanded() {
+    public boolean isExpanded()
+    {
         return expanded;
     }
 
-    public void setExpanded(boolean expanded) {
+    public void setExpanded(boolean expanded)
+    {
         this.expanded = expanded;
     }
 
-    public boolean isEnabled() {
+    public boolean isEnabled()
+    {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(boolean enabled)
+    {
         this.enabled = enabled;
     }
 

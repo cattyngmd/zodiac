@@ -1,5 +1,6 @@
 package cat.yoink.zodiac.event.manager;
 
-public enum Era {
+public enum Era
+{
     PRE, PERI, POST
 }

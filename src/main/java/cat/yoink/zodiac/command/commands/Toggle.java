@@ -6,14 +6,18 @@ import cat.yoink.zodiac.module.manager.module.Module;
 import cat.yoink.zodiac.module.manager.module.ModuleManager;
 import cat.yoink.zodiac.util.CommandUtil;
 
-public class Toggle extends Command {
-    public Toggle() {
+public class Toggle extends Command
+{
+    public Toggle()
+    {
         super("Toggle", "Toggle a module", new String[]{"t", "toggle"});
     }
 
     @Override
-    public void onCommand(String arguments) {
-        if (arguments.equals("")) {
+    public void onCommand(String arguments)
+    {
+        if (arguments.equals(""))
+        {
             CommandUtil.sendChatMessage(String.format("&7Usage: %st <Module>", CommandManager.getPrefix()));
             return;
         }
@@ -21,12 +25,14 @@ public class Toggle extends Command {
         boolean foundModule = false;
         Module module = ModuleManager.getModuleByName(arguments);
 
-        if (module != null) {
+        if (module != null)
+        {
             module.toggle();
             foundModule = true;
         }
 
-        if (!foundModule) {
+        if (!foundModule)
+        {
             CommandUtil.sendChatMessage("&cUnable to find module");
         }
     }
