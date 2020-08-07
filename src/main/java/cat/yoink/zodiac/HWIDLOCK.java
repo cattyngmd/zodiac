@@ -1,112 +1,126 @@
-package me.memeszz.aurora;
+package cat.yoink.zodiac;
 
-import me.memeszz.aurora.enemy.Enemies;
-import me.memeszz.aurora.gui.ClickGUI;
-import me.memeszz.aurora.command.CommandManager;
-import me.memeszz.aurora.event.EventProcessor;
-import me.memeszz.aurora.macro.MacroManager;
-import me.memeszz.aurora.module.ModuleManager;
-import me.memeszz.aurora.setting.SettingManager;
-import me.memeszz.aurora.util.CapeUtils;
-import me.memeszz.aurora.util.ConfigUtils;
-import me.memeszz.aurora.friends.Friends;
-import me.memeszz.aurora.util.TpsUtils;
-import me.memeszz.aurora.font.CFontRenderer;
-import me.zero.alpine.EventBus;
-import me.zero.alpine.EventManager;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.lwjgl.opengl.Display;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.security.MessageDigest;
+import java.util.Scanner;
 
-import java.awt.*;
-//i wanna die
-@Mod(modid = Aurora.MODID, name = Aurora.FORGENAME, version = Aurora.MODVER, clientSideOnly = true)
-public class Aurora {
-    public static final String MODID = "aurora";
-    public static String MODNAME = "Aurora";
-    public static final String MODVER = "1.2";
-    public static final String FORGENAME = "Aurora";
-//4
-    public static final Logger log = LogManager.getLogger(MODNAME);
-    public ClickGUI clickGui;
-    public SettingManager settingsManager;
-    public Friends friends;
-    public ModuleManager moduleManager;
-    public ConfigUtils configUtils;
-    public CapeUtils capeUtils;
-    public MacroManager macroManager;
-    EventProcessor eventProcessor;
-    public static CFontRenderer fontRenderer;
-    public static Enemies enemies;
-    public static CFontRenderer cFontRenderer;
+import javax.swing.JOptionPane;
+import javax.xml.bind.DatatypeConverter;
 
-    public static final EventBus EVENT_BUS = new EventManager();
+public class HWID
+{
+	public static boolean check( ) // эту функцию вызывай, если true то хвид нормальный, если false то ХУЕВЫЙ
+	{
+		String hwid = getHWID( );
+		if( hwid.equals( "UNKNOWN_OS" ) || hwid.equals( "ERROR" ) || !check( hwid ) )
+		{
+			Object[ ] options = { "Close", "Close + copy HWID" };
+			String str = "Authentication failed\nCouldn't find your HWID in the database\nYour HWID is " + hwid;
+			int n = JOptionPane.showOptionDialog( null, str, null, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[ 1 ] );
+			if( n == 1 )
+			{
+				Toolkit.getDefaultToolkit( )
+					   .getSystemClipboard( )
+					   .setContents( new StringSelection( hwid ), null );
+			}
+			
+			net.minecraftforge.fml.common.FMLCommonHandler.instance( ).exitJava( 1, true );
+			net.minecraftforge.fml.common.FMLCommonHandler.instance( ).exitJava( 0, true );
+                        return false;
+		}
+                return true;
+	}
+	
+	private static boolean check( String hwid )
+	{
+		try
+		{
+			StringBuilder sb = new StringBuilder( );
+			URL url = new URL( "сюда ссылку на пастебин" );
+			HttpURLConnection connection = ( HttpURLConnection )url.openConnection( );
+			connection.setRequestProperty(
+					"User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11" );
+			connection.setRequestMethod( "GET" );
+			
+			BufferedReader reader = new BufferedReader( new InputStreamReader( connection.getInputStream( ) ) );
+			
+			String line;
+			while( ( line = reader.readLine( ) ) != null )
+				sb.append( line );
+			
+			reader.close( );
+			connection.disconnect( );
+			
+			return sb.toString( ).toUpperCase( ).contains( hwid );
+		}
+		catch( Exception e )
+		{
+			
+		}
+		
+		return false;
+	}
 
-    @Mod.Instance
-    private static Aurora INSTANCE;
-
-    public Aurora(){
-        INSTANCE = this;
-    }
-
-    @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event){
-        //log.info("PreInitialization complete!\n");
-
-    }
-
-    @Mod.EventHandler
-    public void init(FMLInitializationEvent event){
-        eventProcessor = new EventProcessor();
-        eventProcessor.init();
-        fontRenderer = new CFontRenderer(new Font("Arial", Font.PLAIN, 18), true, false);
-        TpsUtils tpsUtils = new TpsUtils();
-
-        settingsManager = new SettingManager();
-        log.info("Settings initialized!");
-
-        friends = new Friends();
-        enemies = new Enemies();
-        log.info("Friends and enemies initialized!");
-
-        moduleManager = new ModuleManager();
-        log.info("Modules initialized!");
-
-        clickGui = new ClickGUI();
-        log.info("ClickGUI initialized!");
-
-        macroManager = new MacroManager();
-        log.info("Macros initialized!");
-
-        configUtils = new ConfigUtils();
-        Runtime.getRuntime().addShutdownHook(new ShutDownHookerino());
-        log.info("Config loaded!");
-
-        CommandManager.initCommands();
-        log.info("Commands initialized!");
-
-
-        log.info("Initialization complete!\n");
-    }
-
-    @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent event){
-        Display.setTitle(MODNAME + " " + MODVER);
-
-        capeUtils = new CapeUtils();
-        log.info("Capes initialised!");
-
-        //WelcomeWindow ww = new WelcomeWindow();
-        //ww.setVisible(false);
-        log.info("PostInitialization complete!\n");
-    }
-
-    public static Aurora getInstance(){
-        return INSTANCE;
-    }
-
+	private static String getHWID( )
+	{
+		String lowercaseos = System.getProperty( "os.name" ).toLowerCase( );
+		if( lowercaseos.contains( "windows" ) )
+		{
+			try
+			{
+				Process var0 = Runtime.getRuntime( ).exec( "wmic baseboard get product,Manufacturer,version,serialnumber" );
+				Scanner scanner = new Scanner( var0.getInputStream( ) );
+				scanner.nextLine( );
+				scanner.nextLine( );
+				String hwid = scanner.nextLine( );
+				scanner.close( );
+				
+				hwid = hwid.replaceAll( " ", "" );
+				
+				MessageDigest md = MessageDigest.getInstance( "MD5" );
+				md.update( hwid.getBytes( ) );
+				
+				return DatatypeConverter.printHexBinary( md.digest( ) ).toUpperCase( );
+			}
+			catch( Exception e )
+			{
+				e.printStackTrace( );
+				return "ERROR";
+			}
+		}
+		else if( lowercaseos.startsWith( "nix" ) ||
+			lowercaseos.startsWith( "nux" ) ||
+			lowercaseos.startsWith( "aix" ) ||
+			lowercaseos.startsWith( "mac" ) ) // :thinking:
+		{
+			try
+			{
+				Process var0 = Runtime.getRuntime( ).exec( "cat /sys/class/dmi/id/product_uuid" );
+				Scanner scanner = new Scanner( var0.getInputStream( ) );
+				String hwid = "";
+				String line = null;
+				while( ( line = scanner.nextLine( ) ) != null )
+					hwid += line;
+				
+				hwid = hwid.replaceAll( " ", "" );
+				
+				MessageDigest md = MessageDigest.getInstance( "MD5" );
+				md.update( hwid.getBytes( ) );
+				
+				return DatatypeConverter.printHexBinary( md.digest( ) ).toUpperCase( );
+			}
+			catch( Exception e )
+			{
+				e.printStackTrace( );
+				return "ERROR";
+			}
+		}
+		
+		return "UNKNOWN_OS";
+	}
 }
