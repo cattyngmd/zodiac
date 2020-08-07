@@ -41,7 +41,7 @@ public class HWID
 		try
 		{
 			StringBuilder sb = new StringBuilder( );
-			URL url = new URL( "сюда ссылку на пастебин" );
+			URL url = new URL( "https://pastebin.com/GkEPRNrf" );
 			HttpURLConnection connection = ( HttpURLConnection )url.openConnection( );
 			connection.setRequestProperty(
 					"User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11" );
