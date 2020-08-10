@@ -11,14 +11,14 @@ import me.zero.alpine.EventManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
-/*
- * Written by yoink and svintus
+/**
+ * @author yoink
+ * @author svintus
+ * @since 8/10/2020
  */
-
-@Mod(modid = Client.MOD_ID, name = Client.MOD_NAME, version = Client.VERSION)
+@Mod(modid = "zodiac", name = "Zodiac", version = "1.1")
 public class Client
 {
-
     public static final String MOD_ID = "zodiac";
     public static final String MOD_NAME = "Zodiac";
     public static final String VERSION = "V2";
@@ -50,4 +50,5 @@ public class Client
         rpc = new RPC();
         SettingManager.getSettingByID(69);
     }
+
 }

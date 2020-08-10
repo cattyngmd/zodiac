@@ -6,7 +6,6 @@ import cat.yoink.zodiac.module.modules.combat.*;
 import cat.yoink.zodiac.module.modules.misc.*;
 import cat.yoink.zodiac.module.modules.render.Arraylist;
 import cat.yoink.zodiac.module.modules.render.ClickGUI;
-import cat.yoink.zodiac.module.modules.render.NoHurtCam;
 import cat.yoink.zodiac.module.modules.render.Watermark;
 
 import java.util.ArrayList;
@@ -27,7 +26,6 @@ public class ModuleManager
         modules.add(new MultiTask());
         modules.add(new Watermark());
         modules.add(new Arraylist());
-        modules.add(new NoHurtCam());
         modules.add(new Criticals());
         modules.add(new ClickGUI());
         modules.add(new AutoPorn());

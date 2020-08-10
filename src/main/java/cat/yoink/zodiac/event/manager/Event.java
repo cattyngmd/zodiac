@@ -24,5 +24,9 @@ public class Event extends Cancellable
         return partialTicks;
     }
 
+    public static void getFloatEra()
+    {
+        
+    }
 
 }
