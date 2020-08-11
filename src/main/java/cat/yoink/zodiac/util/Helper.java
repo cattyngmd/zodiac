@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.network.play.client.CPacketChatMessage;
 import net.minecraftforge.client.event.ClientChatEvent;
 
+
 public class Helper
 {
     public static void onUpdate()

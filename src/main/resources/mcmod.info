@@ -1,13 +1,13 @@
 [
     {
-        "modid": "zodiac",
-        "name": "Zodiac",
-        "description": "",
+        "modid": "DoomSquad",
+        "name": "DoomSquad",
+        "description": "Utility mod",
         "version": "${version}",
         "mcversion": "${mcversion}",
-        "url": "",
+        "url": "https://www.yoink.site",
         "updateUrl": "",
-        "authorList": [],
+        "authorList": ["yoink"],
         "credits": "",
         "logoFile": "",
         "screenshots": [],
