@@ -8,7 +8,7 @@ import club.minnced.discord.rpc.DiscordRichPresence;
 public class RPC
 {
     public static final DiscordRichPresence presence = new DiscordRichPresence();
-    private static final String ClientId = "728619119091515423";
+    private static final String ClientId = "743331193105416203";
     private static final DiscordRPC rpc = DiscordRPC.INSTANCE;
     private static String details;
     private static String state;
