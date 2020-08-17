@@ -1,72 +1,115 @@
 package cat.yoink.zodiac.gui;
 
-import cat.yoink.zodiac.module.manager.module.Category;
-import net.minecraft.client.gui.FontRenderer;
+import cat.yoink.zodiac.Client;
+import cat.yoink.zodiac.module.manager.module.*;
 import net.minecraft.client.gui.GuiScreen;
 
 public class ClickGUI extends GuiScreen
 {
 
-    int X = 100;
-    int Y = 100;
-    int W = 200;
-    int H = 200;
+    boolean D = false;
+    Category draggingCategory = null;
 
     int xB = 0;
     int yB = 0;
 
-    boolean d = false;
 
     @Override
-    public void drawScreen(int mX, int mY, float partialTicks)
+    public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
 
-        FontRenderer fR = mc.fontRenderer;
-
-        if (d)
-        {
-            X = mX - xB;
-            Y = mY - yB;
-        }
-
-        drawRect(X, Y, X + W, Y + H, 0xff000000);
-
-        int cX = X + 10;
-        int cY = Y + 10;
-
-        for (Category c : Category.values())
+        for (Category category : Category.values())
         {
 
-            drawString(fR, c.getName(), cX, cY, 0xffffffff);
+            int X = category.getX();
+            int Y = category.getY();
 
-            cX += fR.getStringWidth(c.getName()) + 30;
+            if (D && draggingCategory == category)
+            {
+
+                category.setX(mouseX - xB);
+                category.setY(mouseY - yB);
+
+            }
+
+
+            drawRect(X, Y, X + 100, Y + 15, 0xffcc0c0c);
+            drawCenteredString(mc.fontRenderer, category.getName(), X + 50, Y + 4, 0xffffffff);
+
+            for (Module module : Client.getInstance().moduleManager.getModules())
+            {
+
+                if (!module.getCategory().equals(category)) continue;
+
+                Y += 15;
+
+
+                drawRect(X, Y, X + 100, Y + 15, 0xff990808);
+
+                int c;
+                if (module.isEnabled()) c = 0xffffffff;
+                else c = 0xff999999;
+
+                drawCenteredString(mc.fontRenderer, module.getName(), X + 50, Y + 4, c);
+
+            }
 
         }
 
     }
 
-
     @Override
-    protected void mouseClicked(int mX, int mY, int mouseButton)
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton)
     {
+        if (mouseButton != 0) return;
 
-        if (isHover(X, Y, W, 20, mX, mY))
+        for (Category category : Category.values())
         {
-            d = true;
 
-            xB = mX - X;
-            yB = mY - Y;
+            int X = category.getX();
+            int Y = category.getY();
+
+            if (isHover(X, Y, 100, 15, mouseX, mouseY))
+            {
+
+                draggingCategory = category;
+                D = true;
+
+                xB = mouseX - category.getX();
+                yB = mouseY - category.getY();
+
+            }
+
+            for (Module module : Client.getInstance().moduleManager.getModules())
+            {
+
+                Y += 15;
+
+                if (isHover(X, Y, 100, 15, mouseX, mouseY))
+                {
+
+                    module.toggle();
+
+                }
+
+            }
+
         }
+
     }
 
     @Override
     protected void mouseReleased(int mouseX, int mouseY, int state)
     {
-        d = false;
+
+        D = false;
+        draggingCategory = null;
+
     }
 
-    public boolean isHover(int X, int Y, int W, int H, int mX, int mY)
+    private boolean isHover(int X, int Y, int W, int H, int mX, int mY)
     {
         return mX >= X && mX <= X + W && mY >= Y && mY <= Y + H;
     }
+
 }
