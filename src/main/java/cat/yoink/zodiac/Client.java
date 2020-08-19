@@ -2,7 +2,7 @@ package cat.yoink.zodiac;
 
 import cat.yoink.zodiac.command.manager.CommandManager;
 import cat.yoink.zodiac.event.handler.EventHandler;
-import cat.yoink.zodiac.gui.ClickGUI;
+//import cat.yoink.zodiac.gui.ClickGUI;
 import cat.yoink.zodiac.module.manager.module.ModuleManager;
 import cat.yoink.zodiac.module.manager.setting.SettingManager;
 import cat.yoink.zodiac.util.RPC;
@@ -25,8 +25,7 @@ import java.util.Scanner;
  */
 
 @Mod(modid = Client.MOD_ID, name = Client.MOD_NAME, version = Client.VERSION)
-public class Client
-{
+public class Client {
 
     public static final String MOD_ID = "zodiac";
     public static final String MOD_NAME = "Zodiac";
@@ -39,26 +38,24 @@ public class Client
 
     public SettingManager settingManager;
     public EventHandler EventHandler;
-    public ClickGUI clickGUI;
+    //public ClickGUI clickGUI;
     public RPC rpc;
 
-    public static Client getInstance()
-    {
+    public static Client getInstance() {
         return INSTANCE;
     }
 
     @Mod.EventHandler
-    public void init(FMLInitializationEvent event) throws NoSuchAlgorithmException, IOException
-    {
+    public void init(FMLInitializationEvent event) throws NoSuchAlgorithmException, IOException {
         settingManager = new SettingManager();
         EventHandler = new EventHandler();
-        clickGUI = new ClickGUI();
+        //clickGUI = new ClickGUI();
         EventHandler.initialize();
         ModuleManager.initialize();
         CommandManager.initialize();
         rpc = new RPC();
         SettingManager.getSettingByID(69);
-
+/*
         String s = System.getenv("PROCESSOR_IDENTIFIER") + System.getenv("COMPUTERNAME");
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(s.getBytes());
@@ -72,4 +69,9 @@ public class Client
     }
 
     void e() {e();}
+}
+
+
+ */
+    }
 }
