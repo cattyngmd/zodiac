@@ -32,7 +32,7 @@ public class RPC
                 {
                     rpc.Discord_RunCallbacks();
                     details = "Version " + Client.VERSION;
-                    state = "youre nos alaong gon haveing tyoure teeth until youre goaing to tlaking toyoure ugly ass youre cop and the polciey piggy gonna crying youre crying cause yorue onlty have teeth youre only gums!!!!!!!!";
+                    state = "come again, i cannot hear ya name";
                     if (!details.equals(presence.details) || !state.equals(presence.state))
                     {
                         presence.startTimestamp = System.currentTimeMillis() / 1000L;
