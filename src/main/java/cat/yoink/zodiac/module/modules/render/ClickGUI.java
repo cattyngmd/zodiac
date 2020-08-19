@@ -10,10 +10,12 @@ public class ClickGUI extends Module
     {
         super("ClickGUI", "Module click :O", Category.RENDER, true);
     }
-
+    /*
     @Override
     public void onEnable()
     {
         mc.displayGuiScreen(Client.getInstance().clickGUI);
     }
+
+     */
 }

@@ -1,157 +1,161 @@
 package cat.yoink.zodiac.module.manager.setting;
 
-import cat.yoink.zodiac.module.manager.module.Module;
-
 import java.util.ArrayList;
 
-public class Setting
-{
+import cat.yoink.zodiac.module.manager.module.Module;
+
+public class Setting {
+
     private String name;
     private Module parent;
-    private String type;
+    private String mode;
+    private String unlocalizedName;
 
-    private int intMinValue;
-    private int intMaxValue;
-    private int intValue;
+    private String sval;
+    public ArrayList<String> options;
 
-    private boolean boolValue;
+    private boolean bval;
 
-    private String enumValue;
-    private ArrayList<String> options;
+    private double dval;
+    private double min;
+    private double max;
+    private boolean onlyint = false;
 
-    // Integer
-    public Setting(String name, Module parent, int intMinValue, int intValue, int intMaxValue)
-    {
-        setName(name);
-        setParent(parent);
-        setIntMinValue(intMinValue);
-        setIntValue(intValue);
-        setIntMaxValue(intMaxValue);
-        setType("int");
+    public Setting(String name, Module parent, String sval, ArrayList<String> options){
+        this.name = name;
+        this.unlocalizedName = parent.getName() + " " + name;
+        this.parent = parent;
+        this.sval = sval;
+        this.options = options;
+        this.mode = "Combo";
     }
 
-    // Boolean
-    public Setting(String name, Module parent, boolean boolValue)
-    {
-        setName(name);
-        setParent(parent);
-        setBoolValue(boolValue);
-        setType("boolean");
+    public Setting(String name, Module parent, boolean bval){
+        this.name = name;
+        this.unlocalizedName = parent.getName() + " " + name;
+        this.parent = parent;
+        this.bval = bval;
+        this.mode = "Check";
     }
 
-    // Enum
-    public Setting(String name, Module parent, String enumValue, ArrayList<String> options)
-    {
-        setName(name);
-        setParent(parent);
-        setEnumValue(enumValue);
-        setOptions(options);
-        setType("enum");
+    public Setting(String name, Module parent, double dval, double min, double max, boolean onlyint){
+        this.name = name;
+        this.unlocalizedName = parent.getName() + " " + name;
+        this.parent = parent;
+        this.dval = dval;
+        this.min = min;
+        this.max = max;
+        this.onlyint = onlyint;
+        this.mode = "Slider";
     }
 
-    public String getName()
-    {
+    public Setting(String name, Module parent){
+        this.name = name;
+        this.unlocalizedName = parent.getName() + " " + name;
+        this.parent = parent;
+        this.mode = "Space";
+    }
+
+    public String getName(){
         return name;
     }
 
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-    public Module getParent()
-    {
+    public Module getParentMod(){
         return parent;
     }
 
-    public void setParent(Module parent)
-    {
-        this.parent = parent;
+    public String string(){
+        return this.sval;
     }
 
-    public String getType()
-    {
-        return type;
+    public void setValString(String in){
+        this.sval = in;
     }
 
-    public void setType(String type)
-    {
-        this.type = type;
+    public ArrayList<String> getOptions(){
+        return this.options;
     }
 
-    public int getIntMinValue()
-    {
-        return intMinValue;
+    public void setOptions(ArrayList<String> o) {
+        this.options = o;
     }
 
-    public void setIntMinValue(int intMinValue)
-    {
-        this.intMinValue = intMinValue;
+    public int getOptionIndex() {
+        int optionIndex = 0;
+        for(String s : getOptions()) {
+            if(s.equalsIgnoreCase(string())) {
+                return optionIndex;
+            }
+            optionIndex++;
+        }
+        return -42;
     }
 
-    public int getIntMaxValue()
-    {
-        return intMaxValue;
+    public String getNextOption() {
+        int optionIndex = getOptionIndex();
+        if(optionIndex == -42)
+            return options.get(0);
+
+        optionIndex++;
+        if(optionIndex >= options.size()) {
+            optionIndex = 0;
+        }
+
+        return options.get(optionIndex);
     }
 
-    public void setIntMaxValue(int intMaxValue)
-    {
-        this.intMaxValue = intMaxValue;
+    public boolean bool(){
+        return this.bval;
     }
 
-    public int getIntValue()
-    {
-        return intValue;
+    public String getUnlocalizedName(){
+        return this.unlocalizedName;
     }
 
-    public void setIntValue(int intDefaultValue)
-    {
-        this.intValue = intDefaultValue;
+    public void setUnlocalizedName(String n){
+        this.unlocalizedName = n;
     }
 
-    public boolean getBoolValue()
-    {
-        return boolValue;
+    public void setValBoolean(boolean in){
+        this.bval = in;
     }
 
-    public void setBoolValue(boolean boolValue)
-    {
-        this.boolValue = boolValue;
+    public double doubl(){
+        if(this.onlyint){
+            this.dval = Math.round(dval);
+        }
+        return this.dval;
     }
 
-    public String getEnumValue()
-    {
-        return enumValue;
+    public void setValDouble(double in){
+        this.dval = in;
     }
 
-    public void setEnumValue(String enumValue)
-    {
-        this.enumValue = enumValue;
+    public double getMin(){
+        return this.min;
     }
 
-    public ArrayList<String> getOptions()
-    {
-        return options;
+    public double getMax(){
+        return this.max;
     }
 
-    public void setOptions(ArrayList<String> options)
-    {
-        this.options = options;
+    public boolean isCombo(){
+        return this.mode.equalsIgnoreCase("Combo") ? true : false;
     }
 
-    public boolean isInteger()
-    {
-        return type.equals("int");
+    public boolean isCheck(){
+        return this.mode.equalsIgnoreCase("Check") ? true : false;
     }
 
-    public boolean isBoolean()
-    {
-        return type.equals("boolean");
+    public boolean isSlider(){
+        return this.mode.equalsIgnoreCase("Slider") ? true : false;
     }
 
-    public boolean isEnum()
-    {
-        return type.equals("enum");
+    public boolean isSpace(){
+        return this.mode.equalsIgnoreCase("Space") ? true : false;
     }
 
+    public boolean onlyInt(){
+        return this.onlyint;
+    }
 }

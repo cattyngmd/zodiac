@@ -6,10 +6,10 @@ import cat.yoink.zodiac.module.manager.module.Module;
 import java.awt.*;
 import java.net.URI;
 
-public class AutoPorn extends Module
+public class autoporn extends Module
 {
 
-    public AutoPorn()
+    public autoporn()
     {
 
         super("AutoPorn", "Opens pornhub if you want to jerk off.", Category.MISC, true);

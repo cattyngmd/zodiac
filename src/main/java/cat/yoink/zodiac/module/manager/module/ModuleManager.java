@@ -30,7 +30,7 @@ public class ModuleManager
         modules.add(new NoHurtCam());
         modules.add(new Criticals());
         modules.add(new ClickGUI());
-        modules.add(new AutoPorn());
+        modules.add(new autoporn());
         modules.add(new AutoEZ());
         modules.add(new Sprint());
         modules.add(new Strafe());

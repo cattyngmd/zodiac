@@ -1,55 +1,87 @@
 package cat.yoink.zodiac.module.manager.setting;
 
-import cat.yoink.zodiac.module.manager.module.Module;
-
 import java.util.ArrayList;
 
-public class SettingManager
-{
-    public static ArrayList<Setting> settings = new ArrayList<Setting>();
+import cat.yoink.zodiac.module.manager.module.Module;
 
-    public static void addSetting(Setting in)
-    {
-        settings.add(in);
+//Deine Imports
+
+/**
+ *  Made by HeroCode & xtrm
+ *  it's free to use
+ *  but you have to credit me
+ *
+ *  @author HeroCode
+ */
+public class SettingManager {
+
+    private ArrayList<Setting> settings;
+
+    public SettingManager(){
+        this.settings = new ArrayList<Setting>();
     }
 
-    public static ArrayList<Setting> getSettings()
-    {
-        return settings;
+    public void addSetting(Setting in){
+        this.settings.add(in);
+    }
+    public void rSetting(Setting in){
+        this.settings.add(in);
     }
 
-    public static ArrayList<Setting> getSettingByModule(Module module)
-    {
-        ArrayList<Setting> settings = new ArrayList<>();
-        for (Setting setting : getSettings())
-        {
-            if (setting.getParent().equals(module))
-            {
-                settings.add(setting);
+    public ArrayList<Setting> getSettings(){
+        return this.settings;
+    }
+
+    public ArrayList<Setting> getSettingsByMod(Module mod){
+        ArrayList<Setting> out = new ArrayList<Setting>();
+        for(Setting s : getSettings()){
+            if(s.getParentMod().equals(mod)){
+                out.add(s);
             }
         }
-        if (settings.isEmpty())
-        {
+        if(out.isEmpty()){
             return null;
         }
-        return settings;
+        return out;
     }
 
-    public static Setting getSettingByName(String name)
-    {
-        for (Setting setting : getSettings())
-        {
-            if (setting.getName().equalsIgnoreCase(name))
-            {
-                return setting;
+    public Setting getSettingByName(String name){
+        for(Setting set : getSettings()){
+            if(set.getName().equalsIgnoreCase(name)){
+                return set;
+            }
+        }
+        System.err.println("Error Setting NOT found: '" + name +"'!");
+        return null;
+    }
+
+    public Setting getSettingByUnlocalizedName(String name){
+        for(Setting set : getSettings()){
+            if(set.getUnlocalizedName().equalsIgnoreCase(name)){
+                return set;
             }
         }
         return null;
     }
 
-    public static void getSettingByID(int ID)
-    {
-        // UUID Checker (removed cuz it has my ip :flushed:)
+    public Setting getSettingByNameAndMod(String name, Module mod){
+        for(Setting set : getSettingsByMod(mod)){
+            if(set.getName().equalsIgnoreCase(name)){
+                return set;
+            }
+        }
+        System.err.println("Error Setting NOT found: '" + name +"' for mod " + mod.getName() + "!");
+        return null;
+    }
+
+    public Setting getSettingByUnlocalizedNameAndMod(String name, Module mod){
+        for(Setting set : getSettingsByMod(mod)){
+            if(set.getUnlocalizedName().equalsIgnoreCase(name)){
+                return set;
+            }
+        }
+        System.err.println("Error Setting NOT found: '" + name +"' for mod " + mod.getName() + "!");
+        return null;
     }
 
 }
