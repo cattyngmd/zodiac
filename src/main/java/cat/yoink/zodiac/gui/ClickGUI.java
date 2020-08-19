@@ -1,4 +1,4 @@
-package cat.yoink.zodiac.gui;
+/* package cat.yoink.zodiac.gui;
 
 import cat.yoink.zodiac.Client;
 import cat.yoink.zodiac.module.manager.module.*;
@@ -113,3 +113,6 @@ public class ClickGUI extends GuiScreen
     }
 
 }
+
+
+ */
